@@ -71,7 +71,7 @@ async def start_message(_, message: Message):
    add_user(message.from_user.id)
    await message.reply(START_MESSAGE.format(message.from_user.mention), reply_markup=InlineKeyboardMarkup(BUTTON))
 
-@bot.on_message(filters.user(DEVS) & filters.command(["restart", "reboot"]))
+@bot.on_message(filters.user(DEVS) & filters.command(["prestart", "preboot"]))
 async def restart_(_, e: Message):
    await e.reply("**Restarting.....**")
    try:
