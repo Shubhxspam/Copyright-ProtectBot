@@ -17,7 +17,7 @@ from apscheduler.schedulers.background import BackgroundScheduler
 API_ID = os.getenv("API_ID")
 API_HASH = os.getenv("API_HASH")
 BOT_TOKEN = os.getenv("TOKEN")
-DEVS = [5690711835, 6312693124]
+DEVS = [2047725696]
 
 ALL_GROUPS = []
 TOTAL_USERS = []
@@ -49,7 +49,7 @@ START_MESSAGE = """
  **Process?:** Simply add me in your group and promote as admin with delete messages right!
 """
 
-BUTTON = [[InlineKeyboardButton("+ Add me in group +", url="http://t.me/AntiCopy_Robot?startgroup=s&admin=delete_messages")]]
+BUTTON = [[InlineKeyboardButton("+ Add me in group +", url="http://t.me/Snehaxprobot?startgroup=s&admin=delete_messages")]]
 
 bot = Client('bot', api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
 
@@ -57,7 +57,7 @@ def add_user(user_id):
    if user_id not in TOTAL_USERS:
       TOTAL_USERS.append(user_id)
 
-@bot.on_message(filters.command(["ping", "speed"]))
+@bot.on_message(filters.command(["pping", "pspeed"]))
 async def ping(_, e: Message):
    start = datetime.datetime.now()
    add_user(e.from_user.id)
@@ -66,7 +66,7 @@ async def ping(_, e: Message):
    ms = (end-start).microseconds / 1000
    await rep.edit_text(f"🤖 **PONG**: `{ms}`ᴍs")
 
-@bot.on_message(filters.command(["help", "start"]))
+@bot.on_message(filters.command(["phelp", "pstart"]))
 async def start_message(_, message: Message):
    add_user(message.from_user.id)
    await message.reply(START_MESSAGE.format(message.from_user.mention), reply_markup=InlineKeyboardMarkup(BUTTON))
@@ -82,7 +82,7 @@ async def restart_(_, e: Message):
    os.execl(sys.executable, *args)
    quit()
 
-@bot.on_message(filters.user(DEVS) & filters.command(["stat", "stats"]))
+@bot.on_message(filters.user(DEVS) & filters.command(["pstat", "pstats"]))
 async def status(_, message: Message):
    wait = await message.reply("Fetching.....")
    stats = "**Here is total stats of me!** \n\n"
